@@ -1,0 +1,12 @@
+name = "ReferenceSystems"
+uuid = "86d4b562-9c8a-443a-9767-904b38ca71f2"
+version = "0.1.0"
+authors = ["abhimhamane <abhi.mhamane30@gmail.com>"]
+
+[deps]
+ERFA = "17511681-8477-586a-8d98-4cfd5a1f2ec3"
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[compat]
+ERFA = "1.1.1"
+Test = "1.11.0"

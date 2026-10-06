@@ -77,7 +77,7 @@ end
 const SECONDS_PER_DAY = 86400.0
 
 # Δt in seconds
-function advance(t::Epoch{S, T}, Δt_seconds::Real) where {S<:UniformTimeScales, T<:AbstractFloat}
+function advance(t::Epoch{S, T}, Δt_seconds::Real) where {S<:UniformTimeScale, T<:AbstractFloat}
     Δdays = T(Δt_seconds)/T(SECONDS_PER_DAY)
     return Epoch{S}(t.whole, t.fraction+Δdays)
 end

@@ -149,19 +149,6 @@ function timescale(
     return Epoch{UT1}(ut11, ut12)
 end
 
-function timescale(
-    ::UT1,
-    t::Epoch{UTC},
-    eop_table::DUT1Table,
-)
-    dUT1 = get_dut1(t, eop_table)
-
-    return timescale(
-        ut1,
-        t,
-        dUT1,
-    )
-end
 
 function timescale(::UTC, t::Epoch{UT1}, dUT1)
     ut11, ut12 = jdparts(t)
@@ -175,16 +162,7 @@ function timescale(::UTC, t::Epoch{UT1}, dUT1)
     return Epoch{UTC}(utc1, utc2)
 end
 
-function timescale(::UTC, t::Epoch{UT1})
-    dUT1 = get_dut1(t, eop_table)
 
-    return timescale(
-        utc,
-        t,
-        dUT1,
-    )
-
-end
 
 timescale(::TT, t::Epoch{UTC}) =
     timescale(tt, timescale(tai, t))

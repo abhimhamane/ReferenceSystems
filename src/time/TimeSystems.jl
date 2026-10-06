@@ -29,5 +29,10 @@ export
 
     # calendar interface
     epoch,
-    calendar
+    calendar,
+
+    # eop
+    read_eop_c04,
+    DUT1Table,
+    get_dut1
 end

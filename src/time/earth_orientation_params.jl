@@ -1,4 +1,3 @@
-
 struct DUT1Table{T}
     mjd0::Int
     dut1::Vector{T}
@@ -79,3 +78,28 @@ end
 #t = Epoch{UTC}(eop_table.mjd0+MJD_OFFSET, 3.0)
 #get_dut1(t, eop_table)
 
+
+function timescale(
+    ::UT1,
+    t::Epoch{UTC},
+    eop_table::DUT1Table
+)
+    dUT1 = get_dut1(t, eop_table)
+
+    return timescale(
+        ut1,
+        t,
+        dUT1
+    )
+end
+
+function timescale(::UTC, t::Epoch{UT1}, eop_table::DUT1Table)
+    dUT1 = get_dut1(t, eop_table)
+
+    return timescale(
+        utc,
+        t,
+        dUT1,
+    )
+
+end

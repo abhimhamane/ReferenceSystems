@@ -5,8 +5,10 @@ authors = ["abhimhamane <abhi.mhamane30@gmail.com>"]
 
 [deps]
 ERFA = "17511681-8477-586a-8d98-4cfd5a1f2ec3"
+Revise = "295af30f-e4ad-537b-8983-00126c2a3abe"
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 
 [compat]
 ERFA = "1.1.1"
+Revise = "3.17.2"
 Test = "1.11.0"

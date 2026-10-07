@@ -3,6 +3,7 @@ using Test
 using ReferenceSystems.TimeSystems:
     Epoch,
     TT,
+    TAI,
     GPS,
     UTC,
     tt,
@@ -54,15 +55,14 @@ end
 end
 
 @testset "Epoch advance" begin
-    t0 = Epoch{TT}(2451545.0, 0.25)
+    t0 = Epoch{TAI}(2451545.0, 0.25)
 
     t1 = advance(t0, 10.0)
-
     @test elapsed_seconds(t1, t0) ≈ 10.0
 end
 
 @testset "Advance across day boundary" begin
-    t0 = Epoch{TT}(2451545.0, 0.9)
+    t0 = Epoch{TAI}(2451545.0, 0.9)
 
     t1 = advance(t0, 0.2 * 86400)
 
@@ -71,7 +71,7 @@ end
 end
 
 @testset "Large propagation intervals" begin
-    t0 = Epoch{TT}(2451545.0, 0.25)
+    t0 = Epoch{TAI}(2451545.0, 0.25)
 
     Δt = 10 * 86400 + 123.456
 
@@ -103,7 +103,7 @@ end
     # exactly at MJD 60000
     t0 = Epoch{UTC}(2400000.5, 60000.0)
 
-    @test dut1(table, t0) ≈ 0.1
+    @test get_dut1(table, t0) ≈ 0.1
 
     # halfway between 60000 and 60001
     t1 = Epoch{UTC}(2400000.5, 60000.5)

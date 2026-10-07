@@ -40,5 +40,5 @@ function calendar(
             d2,
         )
 
-    return (y, m, d, (hmsf/10^(digits)))
+    return (y, m, d, hmsf/10^(digits))
 end

@@ -100,19 +100,20 @@ end
 
 
 @testset "DUT1 interpolation" begin
+    eop_table = read_eop_c04("/home/abhi/Research/PhD/tools/RapidFGMSim/data/EOP_14_C04_IAU2000A_one_file_1962-now.txt")
     # exactly at MJD 60000
     t0 = Epoch{UTC}(2400000.5, 60000.0)
 
-    @test get_dut1(table, t0) ≈ 0.1
+    @test get_dut1(t0, eop_table) ≈ 0.1
 
     # halfway between 60000 and 60001
     t1 = Epoch{UTC}(2400000.5, 60000.5)
 
-    @test dut1(table, t1) ≈ 0.15
+    @test get_dut1(t1, eop_table) ≈ 0.15
 
     # halfway between 60001 and 60002
     t2 = Epoch{UTC}(2400000.5, 60001.5)
 
-    @test dut1(table, t2) ≈ 0.3
+    @test get_dut1(table, t2) ≈ 0.3
 end
 

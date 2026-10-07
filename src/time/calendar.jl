@@ -29,31 +29,16 @@ end
 
 function calendar(
     t::Epoch{S};
-    digits::Integer = 9,
+    digits::Integer = 6,
 ) where {S<:AbstractTimeScale}
 
     d1, d2 = jdparts(t)
-
-    year, month, day, hmsf =
-        ERFA.d2dtf(
+    y, m, d, hmsf = ERFA.d2dtf(
             _erfa_name(S()),
             digits,
             d1,
             d2,
         )
 
-    hour, minute, second, fraction = hmsf
-
-    sec =
-        second +
-        fraction * 10.0^(-digits)
-
-    return (
-        year = year,
-        month = month,
-        day = day,
-        hour = hour,
-        minute = minute,
-        second = sec,
-    )
+    return (y, m, d, (hmsf/10^(digits)))
 end

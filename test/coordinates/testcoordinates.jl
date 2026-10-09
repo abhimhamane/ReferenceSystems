@@ -1,5 +1,5 @@
 using Test
-using LinearAlgebra: norm, dot
+using LinearAlgebra: norm, dot, ⋅
 
 #using ReferenceSystems.Frames:: ECI, ECEF
 using ReferenceSystems.CoordinateSystems: Cartesian, Spherical, components, cartesian, ECI, ECEF
@@ -66,7 +66,7 @@ using ReferenceSystems.CoordinateSystems: Cartesian, Spherical, components, cart
         r = 7000e3
 
         # Equator, prime meridian
-        s = Spherical{ECI}(r, 0.0, 0.0)
+        s = Spherical{ECEF}(r, 0.0, 0.0)
         p = cartesian(s)
 
         @test p.x ≈ r
@@ -74,7 +74,7 @@ using ReferenceSystems.CoordinateSystems: Cartesian, Spherical, components, cart
         @test abs(p.z) < 1e-9
 
         # Equator, 90° east
-        s = Spherical{ECI}(r, 0.0, π/2)
+        s = Spherical{ECEF}(r, 0.0, π/2)
         p = cartesian(s)
 
         @test abs(p.x) < 1e-9
@@ -82,7 +82,7 @@ using ReferenceSystems.CoordinateSystems: Cartesian, Spherical, components, cart
         @test abs(p.z) < 1e-9
 
         # North pole
-        s = Spherical{ECI}(r, π/2, 0.0)
+        s = Spherical{ECEF}(r, π/2, 0.0)
         p = cartesian(s)
 
         @test abs(p.x) < 1e-9
@@ -90,7 +90,7 @@ using ReferenceSystems.CoordinateSystems: Cartesian, Spherical, components, cart
         @test p.z ≈ r
 
         # Frame preservation
-        @test p isa Cartesian{ECI}
+        @test p isa Cartesian{ECEF}
     end
 
     @testset "Cartesian arithmetic" begin
@@ -118,9 +118,10 @@ using ReferenceSystems.CoordinateSystems: Cartesian, Spherical, components, cart
 
         @test dot(a, b) ≈ 11.0
         @test dot(a, a) ≈ norm(a)^2
+        @test a⋅b ≈ 11.0
 
         # Norm of spherical coordinates
-        s = Spherical{ECI}(7000e3, 0.5, 1.0)
+        s = Spherical{ECEF}(7000e3, 0.5, 1.0)
         @test norm(s) == 7000e3
     end
 

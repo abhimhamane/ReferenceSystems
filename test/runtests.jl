@@ -1,8 +1,12 @@
 using Test
 using ReferenceSystems
 
-@testset "MyPackage" begin
-    @testset "TimeSystems" begin
-        include("time/timetest.jl")
+@testset "ReferenceSystems" begin
+    #@testset "TimeSystems" begin
+    #    include("time/timetest.jl")
+    #end
+
+    @testset "Coordinates" begin
+        include("coordinates/testcoordinates.jl")
     end
 end
